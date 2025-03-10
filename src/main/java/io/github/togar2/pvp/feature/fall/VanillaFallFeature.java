@@ -138,7 +138,7 @@ public class VanillaFallFeature implements FallFeature, CombatFeature, Registrab
 		
 		entity.setTag(FALL_DISTANCE, 0.0);
 		
-		if (block.getProperty("waterlogged") == "true") return;
+		if (entity.getInstance().getBlock(landingPos.add(0,-1,0)).getProperty("waterlogged") == "true") return;
 		if (entity instanceof Player player && !player.getGameMode().canTakeDamage()) return;
 		int damage = getFallDamage(entity, fallDistance);
 		if (damage > 0) {
