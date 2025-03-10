@@ -121,7 +121,7 @@ public class VanillaFallFeature implements FallFeature, CombatFeature, Registrab
 		
 		double safeFallDistance = entity.getAttributeValue(Attribute.GENERIC_SAFE_FALL_DISTANCE);
 		if (fallDistance > safeFallDistance) {
-			if (!block.isAir() && block.getProperty("waterlogged") != "true") {
+			if (!block.isAir() && (block.getProperty("waterlogged") != "true")) {
 				double damageDistance = Math.ceil(fallDistance - safeFallDistance);
 				double particleMultiplier = Math.min(0.2 + damageDistance / 15.0, 2.5);
 				int particleCount = (int) (150 * particleMultiplier);
