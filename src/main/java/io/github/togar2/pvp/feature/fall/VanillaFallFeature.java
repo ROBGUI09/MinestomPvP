@@ -121,7 +121,7 @@ public class VanillaFallFeature implements FallFeature, CombatFeature, Registrab
 		
 		double safeFallDistance = entity.getAttributeValue(Attribute.GENERIC_SAFE_FALL_DISTANCE);
 		if (fallDistance > safeFallDistance) {
-			if (!block.isAir() && !("true".equals(block.getProperty("waterlogged"))) {
+			if (!block.isAir()) {
 				double damageDistance = Math.ceil(fallDistance - safeFallDistance);
 				double particleMultiplier = Math.min(0.2 + damageDistance / 15.0, 2.5);
 				int particleCount = (int) (150 * particleMultiplier);
@@ -140,6 +140,9 @@ public class VanillaFallFeature implements FallFeature, CombatFeature, Registrab
 		
 		if (entity instanceof Player player && !player.getGameMode().canTakeDamage()) return;
 		int damage = getFallDamage(entity, fallDistance);
+		if (block.getProperty("waterlogged") == "true") {
+			damage = 0
+		}
 		if (damage > 0) {
 			playFallSound(entity, damage);
 			entity.damage(DamageType.FALL, damage);
