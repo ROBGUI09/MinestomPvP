@@ -141,7 +141,7 @@ public class VanillaFallFeature implements FallFeature, CombatFeature, Registrab
 		if (entity instanceof Player player && !player.getGameMode().canTakeDamage()) return;
 		int damage = getFallDamage(entity, fallDistance);
 		if (block.getProperty("waterlogged") == "true") {
-			damage = 0
+			damage = 0;
 		}
 		if (damage > 0) {
 			playFallSound(entity, damage);
